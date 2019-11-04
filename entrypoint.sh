@@ -17,7 +17,8 @@ echo "<!DOCTYPE HTML>
 echo "Building tex"
 latexmk 
 # Remove every output that isn't a PDF
-mv *.pdf $OUT_DIR/
+ls
+mv thesis.pdf $OUT_DIR/
 latexmk -C
 FILENAME=$(find $OUT_DIR/ -type f -name "*.pdf")
 FILENAME=$(basename "$FILENAME")
