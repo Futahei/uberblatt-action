@@ -15,9 +15,10 @@ echo "<!DOCTYPE HTML>
     <ul>" > $OUT_DIR/index.html
 
 echo "Building tex"
-latexmk -output-directory=$OUT_DIR/
+latexmk 
 # Remove every output that isn't a PDF
-find $OUT_DIR/ -type f ! -name "*.pdf" -exec rm {} \;
+latexmk -C
+mv *.pdf $OUT_DIR/
 FILENAME=$(find $OUT_DIR/ -type f -name "*.pdf")
 FILENAME=$(basename "$FILENAME")
 echo "        <li><a href=\"$FILENAME\">$FILENAME</a></li>" >> $OUT_DIR/index.html
