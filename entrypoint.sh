@@ -1,6 +1,6 @@
 #!/bin/bash
 REPO_ROOT="$(pwd)"
-OUT_DIR="$(pwd)/build"
+OUT_DIR="$(pwd)/docs"
 
 mkdir -p $OUT_DIR
 
@@ -17,7 +17,9 @@ echo "<!DOCTYPE HTML>
 echo "Building $directory"
 cd $directory
 mkdir -p $OUT_DIR/$directory
-latexmk -pdf -output-directory=$OUT_DIR/$directory
+
+make
+
 # Remove every output that isn't a PDF
 find $OUT_DIR/$directory -type f ! -name "*.pdf" -exec rm {} \;
 FILENAME=$(find $OUT_DIR/$directory -type f -name "*.pdf")
