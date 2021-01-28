@@ -1,6 +1,7 @@
 #!/bin/bash
 REPO_ROOT="$(pwd)"
 OUT_DIR="$(pwd)/docs"
+MAKEFILE="$(pwd)/Makefile"
 
 mkdir -p $OUT_DIR
 
@@ -18,7 +19,7 @@ echo "Building $directory"
 cd $directory
 mkdir -p $OUT_DIR/$directory
 
-make
+make -f MAKEFILE
 
 # Remove every output that isn't a PDF
 find $OUT_DIR/$directory -type f ! -name "*.pdf" -exec rm {} \;
