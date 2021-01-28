@@ -15,15 +15,11 @@ echo "<!DOCTYPE HTML>
     <h1>$GITHUB_REPOSITORY</h1>
     <ul>" > $OUT_DIR/index.html
 
-echo "Building $directory"
-cd $directory
-mkdir -p $OUT_DIR/$directory
-
+echo "Building tex"
 make -f MAKEFILE
-
 # Remove every output that isn't a PDF
-find $OUT_DIR/$directory -type f ! -name "*.pdf" -exec rm {} \;
-FILENAME=$(find $OUT_DIR/$directory -type f -name "*.pdf")
+find $OUT_DIR -type f ! -name "*.pdf" -exec rm {} \;
+FILENAME=$(find $OUT_DIR/ -type f -name "*.pdf")
 FILENAME=$(basename "$FILENAME")
 echo "        <li><a href=\"$FILENAME\">$FILENAME</a></li>" >> $OUT_DIR/index.html
 
